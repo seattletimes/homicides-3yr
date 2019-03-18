@@ -2,48 +2,6 @@
 @aspect-ratio: 7/10;
 @legend-length: 5; //number of legend items
 
-//custom
-.radio-block {
-  .display-flex();
-  text-align: center;
-  input { opacity: 0; width: 0 }
-  input + label {
-    display: inline-block;
-    padding: 2px 4px;
-    background: white;
-    color: black;
-    cursor: pointer;
-    padding-bottom: 10px;
-
-  }
-  input:focus + label {
-    outline: 1px solid black;
-  }
-  input:checked + label {
-    background: #fee391;
-    color: black;
-  }
-
-}
-
-// .year-marker {
-//   display: none;
-// }
-
-.make-filter(@type) {
-  [data-filter="@{type}"] .@{type} {
-    display: block;
-  }
-}
-
-.make-filter(year2016);
-.make-filter(year2017);
-.make-filter(year2018);
-
-[data-filter="all"] .year-marker {
-  display: block;
-}
-
 body {
   font-family: @df-sans;
   padding: 0;
@@ -55,7 +13,7 @@ body {
   border-top: 1px solid @df-border-gray;
   border-bottom: 1px solid @df-border-gray;
   padding: 8px 0;
-  margin: 20px auto;
+  margin: 0px auto;
   max-width: 960px;
   padding-bottom: 0;
   clear: both;
@@ -103,6 +61,47 @@ body {
     text-align: center;
     font-family: @df-serif;
   }
+}
+
+//custom
+.radio-block {
+  .display-flex();
+  margin-bottom: 10px;
+  text-align: center;
+  input { opacity: 0; width: 0 }
+  input + label {
+    flex-grow: 3;
+    display: inline-block;
+    padding: 2px 6px;
+    background: @df-light-gray;
+    color: black;
+    cursor: pointer;
+  }
+  input:focus + label {
+    outline: 1px solid black;
+  }
+  input:checked + label {
+    background: @df-dark-gray;
+    color: white;
+  }
+}
+
+.year-marker {
+  display: none;
+}
+
+.make-filter(@type) {
+  [data-filter="@{type}"] .@{type} {
+    display: block;
+  }
+}
+
+.make-filter(y2016);
+.make-filter(y2017);
+.make-filter(y2018);
+
+[data-filter="all"] .year-marker {
+  display: block;
 }
 @import "leaflet-tweaks";
 @import "legend";

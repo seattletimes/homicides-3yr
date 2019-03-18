@@ -7,13 +7,15 @@ var element = document.querySelector("leaflet-map");
 var L = element.leaflet;
 var map = element.map;
 
-var data = require("./three-year.geo.json");
-// var data2017 = require("./homicides17.geo.json");
-// var data2018 = require("./homicides18.geo.json");
+var ich = require("icanhaz");
+var templateFile = require("./_popup.html");
+ich.addTemplate("popup", templateFile);
 
 var onEachFeature = function(feature, layer) {
+	layer.bindPopup(ich.popup(feature.properties))
 };
 
+var data = require("./three-year.geo.json");
 var all = "year";
 
 var getColor = function(d) {
@@ -21,9 +23,9 @@ var getColor = function(d) {
     console.log(value)
     if (typeof value != "undefined") {
       // condition ? if-true : if-false;
-     return value >= 2018 ? '#fee391' :
-     		value >= 2017 ? '#A6EEFF' :
-            value >= 2016 ? '#22E580' :
+     return value == "y2018" ? '#006849' :
+     		value == "y2017" ? '#446BCC' :
+            value == "y2016" ? '#6e016b' :
              '#0073C1' ;
     } else {
       return "gray"
@@ -31,21 +33,20 @@ var getColor = function(d) {
   };
 
 function getStroke(s) {
- return s == "OIS" ? 3 :
-                       1
+ return s == "OIS" ? 2 : .2
 }
 
 function geojsonMarkerOptions(feature) {
 	console.log(feature.properties.year)
 
   return {
-    radius: 5,
+    radius: 6,
     className: "leaflet-clickable year-marker " + feature.properties.year,
     fillColor: getColor(feature.properties),
     color: "#000000",
     weight: getStroke(feature.properties.type),
-    opacity: 0.7,
-    fillOpacity: 0.7,
+    opacity: 1,
+    fillOpacity: 0.5,
   }
 };
 
@@ -70,6 +71,7 @@ controls.addEventListener("change", onChange);
 onChange(); 
 
 var onEachFeature = function(feature, layer) {
+	  layer.bindPopup(ich.popup(feature.properties))
 };
 
 map.scrollWheelZoom.disable();
