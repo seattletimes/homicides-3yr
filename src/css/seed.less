@@ -1,6 +1,103 @@
 @import "seattletimes";
 @aspect-ratio: 7/10;
 @legend-length: 5; //number of legend items
+
+//custom
+
+@toxic: #C78300;
+@safe: #0008ff;
+@pseudo: #756bb1;
+@highlyToxic: #bb0606;
+
+.nav {
+  .display-flex();
+  .align-items(flex-start);
+
+  @media @mobile {
+    display: none;
+  }
+    .section {
+    margin-bottom: 5px;
+
+      input {
+        .flex(1 1 75%);
+      }
+    }
+
+  input[type="checkbox"] {
+    display: none;
+
+    & + label {
+      background: @df-light-gray;
+      color: @df-middle-gray;
+    }
+
+    &:checked + label {
+      background: @df-middle-gray;
+      color: white;
+    }
+  }
+}
+
+.navMobile {
+  display: none;
+
+  @media @mobile {
+    display: block;
+  }
+
+  .section {
+    margin-bottom: 5px;
+
+      input {
+        .flex(1 1 75%);
+      }
+    }
+
+  input[type="checkbox"] {
+    display: none;
+
+    & + label {
+      background: @df-light-gray;
+      color: @df-middle-gray;
+    }
+
+    &:checked + label {
+      background: @df-middle-gray;
+      color: white;
+    }
+  }
+  }
+
+  .button {
+  background-color: @df-middle-gray;
+  border: none;
+  padding: 5px 16px;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  font-size: 14px;
+  height: 25px;
+
+  @media @mobile {
+    padding: 2px 20px;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  &.inactive, &[disabled] {
+    background: @df-light-gray;
+    color: @df-middle-gray;
+    border: 1px dashed @df-dark-gray;
+  }
+
+  &:hover:not(.inactive) {
+    background: darken(@df-middle-gray, 10%);
+  }
+}
 body {
   font-family: @df-sans;
   padding: 0;
@@ -33,11 +130,40 @@ body {
     &:not([ready]) {
       display: none;
     }
+      .park-marker {
+    border-radius: 100%;
+    border: 1px solid white;
+    opacity: .4;
+    box-shadow: none;
+
+    &.pf {
+      // background: @safe;
+      border: 1px solid white;
+      box-shadow: 0px 0px 5px lighten(@safe, 20%);
+      opacity: .8;
+    }
+
+    &.high {
+      // background: @highlyToxic;
+      box-shadow: 0px 0px 5px lighten(@highlyToxic, 20%);
+      opacity: .9;
+      border: 1px solid white;
+    }
+
+    &.pseudoPF {
+      // background: @pseudo;
+      box-shadow: 0px 0px 5px lighten(@pseudo, 2%);
+      opacity: .8;
+      border: 1px solid white;
+    }
   }
 }
+  }
+
 .map-container {
   position: relative;
 }
+
 .bigheader {
   text-align: center;
   font-size: 16px;

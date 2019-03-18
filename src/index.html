@@ -23,32 +23,38 @@
           sodales risus. </p>
       </section>
 
+      <div class=buttonRow>
+        <input type="radio" name="layer-selection" id="2016" checked="checked">
+         <label for="2016">2016</label>
+        <input type="radio" name="layer-selection" id="2017">
+         <label for="2017">2017</label>
+         <input type="radio" name="layer-selection" id="2018">
+         <label for="2018">2018</label>
+     </div>
+
       <div class="aspect-ratio-outer">
+<!--          <div class="nav">
+            <div class="layers section">
+              <input type="checkbox" id="2016" checked="checked">
+              <label class="layer button pesticide" for="pesticide">
+                2016
+              </label>
+              <input type="checkbox" id="2017" checked="checked">
+              <label class="layer button pesticideFree" for="free">
+                2017
+              </label>
+              <input type="checkbox" id="2018" checked="checked">
+              <label class="layer button pesticideFree" for="free">
+                2018
+              </label>
+            </div>
+          </div> -->
+
         <div class="aspect-ratio-inner">
+
 
           <leaflet-map zoom=10>
             <tile-layer layer="cartoPositron"></tile-layer>
-            <geo-json>
-              <geo-data>
-                <%= t.include("states.geo.json") %>
-              </geo-data>
-              <geo-style>{ "weight": 1, "color": "#000", "opacity":0.1 }</geo-style>
-              <geo-palette property="CENSUSAREA">
-                <color-mapping max=10000 color="purple"></color-mapping>
-                <color-mapping min=10001 max=50000 color="blue"></color-mapping>
-                <color-mapping min=50001 max=100000 color="green"></color-mapping>
-                <color-mapping min=100001 max=200000 color="yellow"></color-mapping>
-                <color-mapping min=200001 color="orange"></color-mapping>
-              </geo-palette>
-              <geo-popup>
-                <h1 class="bigheader">{{NAME}}</h1>
-                <ul>
-                  <li> Size: {{CENSUSAREA}}
-                    <li> State ID: {{STATE}}
-                      <li> Geo ID: {{GEO_ID}}
-                </ul>
-              </geo-popup>
-            </geo-json>
           </leaflet-map>
 
         </div>
@@ -74,7 +80,6 @@
         <span class="credit">XXX XXX / THE SEATTLE TIMES</div>
     </div>
   </responsive-child>
-
   <script src="app.js"></script>
   <% /*= t.include("partials/_foot.html"); */ %>
     <%= t.include("partials/_workHere.html") %>
