@@ -18,7 +18,7 @@ var all = "year";
 
 var getColor = function(d) {
     var value = d[all];
-    // console.log(value)
+    console.log(value)
     if (typeof value != "undefined") {
       // condition ? if-true : if-false;
      return value >= 2018 ? '#fee391' :
@@ -30,10 +30,10 @@ var getColor = function(d) {
     }
   };
 
-//   function getColor(d) {
-//   return d == "OIS" ? "#eaa238" :
-//                        "#006849"
-// }
+function getStroke(s) {
+ return s == "OIS" ? 3 :
+                       1
+}
 
 function geojsonMarkerOptions(feature) {
 	console.log(feature.properties.year)
@@ -42,9 +42,8 @@ function geojsonMarkerOptions(feature) {
     radius: 5,
     className: "leaflet-clickable year-marker " + feature.properties.year,
     fillColor: getColor(feature.properties),
-    // fillColor: year[feature.properties.year] || "#f15a29",
     color: "#000000",
-    weight: 1,
+    weight: getStroke(feature.properties.type),
     opacity: 0.7,
     fillOpacity: 0.7,
   }
