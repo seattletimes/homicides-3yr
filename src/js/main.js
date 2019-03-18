@@ -12,15 +12,6 @@ var data = require("./three-year.geo.json");
 // var data2018 = require("./homicides18.geo.json");
 
 var onEachFeature = function(feature, layer) {
-
-    // layer.on({
-    //   mouseover: function(e) {
-    //     layer.setStyle({ weight: 3, fillOpacity: .8 });
-    //   },
-    //   mouseout: function(e) {
-    //     layer.setStyle({ weight: 1, fillOpacity: 0.6 });
-    //   }
-    // });
 };
 
 var year = {
@@ -29,22 +20,30 @@ var year = {
   "2018": "#003369",
 }
 
-var toggleLayer = function() {
-var checked = $.one(".buttonRow input:checked").id;
-  if (checked == "2016") {
-    all = "2016";
-  } else {
-    all = "2017";
-  }
-  geojson.setStyle(style);
-};
+// var toggleLayer = function() {
+// var checked = $.one(".buttonRow input:checked").id;
+//   if (checked == "2016") {
+//     year = "2016";
+//   } else {
+//   	if (checked == "2017") {
+//     year = "2017";
+//     } else {
+//     year = "2018";
+//   }
+//   geojson.setStyle(style);
+// };
+
+function getColor(d) {
+  return d == "OIS" ? "#eaa238" :
+                       "#006849"
+}
 
 function geojsonMarkerOptions(feature) {
 
   return {
     radius: 7,
-    // fillColor: getColor(feature.properties.type),
-    fillColor: year[feature.properties.year] || "#f15a29",
+    fillColor: getColor(feature.properties.type),
+    // fillColor: year[feature.properties.year] || "#f15a29",
     color: "#000000",
     weight: 1,
     opacity: 0.7,
@@ -74,4 +73,4 @@ onChange();
 
 map.scrollWheelZoom.disable();
 
- map.fitBounds(geojson.getBounds());
+ // map.fitBounds(geojson.getBounds());
