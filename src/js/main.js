@@ -14,35 +14,34 @@ var data = require("./three-year.geo.json");
 var onEachFeature = function(feature, layer) {
 };
 
-var year = {
-  "2016": "#87278f",
-  "2017": "#2bb673",
-  "2018": "#003369",
-}
+var all = "year";
 
-// var toggleLayer = function() {
-// var checked = $.one(".buttonRow input:checked").id;
-//   if (checked == "2016") {
-//     year = "2016";
-//   } else {
-//   	if (checked == "2017") {
-//     year = "2017";
-//     } else {
-//     year = "2018";
-//   }
-//   geojson.setStyle(style);
-// };
+var getColor = function(d) {
+    var value = d[all];
+    // console.log(value)
+    if (typeof value != "undefined") {
+      // condition ? if-true : if-false;
+     return value >= 2018 ? '#fee391' :
+     		value >= 2017 ? '#A6EEFF' :
+            value >= 2016 ? '#22E580' :
+             '#0073C1' ;
+    } else {
+      return "gray"
+    }
+  };
 
-function getColor(d) {
-  return d == "OIS" ? "#eaa238" :
-                       "#006849"
-}
+//   function getColor(d) {
+//   return d == "OIS" ? "#eaa238" :
+//                        "#006849"
+// }
 
 function geojsonMarkerOptions(feature) {
+	console.log(feature.properties.year)
 
   return {
-    radius: 7,
-    fillColor: getColor(feature.properties.type),
+    radius: 5,
+    className: "leaflet-clickable year-marker " + feature.properties.year,
+    fillColor: getColor(feature.properties),
     // fillColor: year[feature.properties.year] || "#f15a29",
     color: "#000000",
     weight: 1,
@@ -60,17 +59,18 @@ var geojson = L.geoJson(data, {
     onEachFeature: onEachFeature
 }).addTo(map);
 
-  var controls = document.querySelector(".buttonRow");
+var controls = document.querySelector(".radio-block");
 
-  // var onChange = function() {
-  // //find the radio button that's currently checked
-  // var value = document.querySelector(`input[name="layer-selection"]:checked`).id;
-  // all = value;
-  // max = Math.max.apply(null, data.features.map(f => f.properties[all]));
+var onChange = function() {
+  //find the radio button that's currently checked
+  var value = document.querySelector(`input[name="year"]:checked`).id;
+  element.setAttribute("data-filter", value); 
+};
 
- controls.addEventListener("change", onChange);
+controls.addEventListener("change", onChange);
 onChange(); 
 
-map.scrollWheelZoom.disable();
+var onEachFeature = function(feature, layer) {
+};
 
- // map.fitBounds(geojson.getBounds());
+map.scrollWheelZoom.disable();

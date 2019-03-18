@@ -23,35 +23,19 @@
           sodales risus. </p>
       </section>
 
-      <div class=buttonRow>
-        <input type="radio" name="layer-selection" id="2016" checked="checked">
-         <label for="2016">2016</label>
-        <input type="radio" name="layer-selection" id="2017">
-         <label for="2017">2017</label>
-         <input type="radio" name="layer-selection" id="2018">
-         <label for="2018">2018</label>
+      <div class=radio-block>
+<!--         <input type="radio" name="year" id="all" checked="checked">
+         <label for="all">2016-2018</label> -->
+        <input type="radio" name="year" id="year2016" checked="checked">
+         <label for="year2016">2016</label>
+        <input type="radio" name="year" id="year2017">
+         <label for="year2017">2017</label>
+        <input type="radio" name="year" id="year2018">
+         <label for="year2018">2018</label>
      </div>
 
       <div class="aspect-ratio-outer">
-<!--          <div class="nav">
-            <div class="layers section">
-              <input type="checkbox" id="2016" checked="checked">
-              <label class="layer button pesticide" for="pesticide">
-                2016
-              </label>
-              <input type="checkbox" id="2017" checked="checked">
-              <label class="layer button pesticideFree" for="free">
-                2017
-              </label>
-              <input type="checkbox" id="2018" checked="checked">
-              <label class="layer button pesticideFree" for="free">
-                2018
-              </label>
-            </div>
-          </div> -->
-
         <div class="aspect-ratio-inner">
-
 
           <leaflet-map zoom=10>
             <tile-layer layer="cartoPositron"></tile-layer>
