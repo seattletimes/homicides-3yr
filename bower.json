@@ -1,0 +1,20 @@
+{
+  "name": "homicides-3yr",
+  "version": "0.0.1",
+  "homepage": "https://github.com/seattletimes/homicides-3yr",
+  "authors": [
+    "The Seattle Times"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/js/lib",
+    "test",
+    "tests"
+  ]
+}
